@@ -1,0 +1,14 @@
+{% extends 'app/main.html' %}
+
+{% block content %}
+    {#Kategori adını başlık olarak göster#}
+    <h1>{{ category_obj.name }}</h1>
+
+    {#Kategori açıklamasını göster (varsa)#}
+    <p>{{ category_obj.description }}</p>
+    {#Bu kategorideki yazıları listele (home.html'deki gibi)#}
+    {% include 'app/_post_card.html' with post=post %}
+
+
+
+{% endblock %}

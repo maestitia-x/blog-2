@@ -17,26 +17,7 @@
     {% for category in categories %}
         <a href="{% url 'category' category.id %}">{{ category }}</a>
     {% endfor %}
-    {% if posts %}
+    {% include 'app/_post_card.html' with post=post %}
 
-
-        {% for post in posts %}
-            {% if post.image %}
-                <img src="{{ post.image.url }}" alt="">
-            {% endif %}
-            <p>{{ post.title }}</p>
-            <span>{{ post.author }}</span>
-            <p>{{ post.created_at|date:"d M Y" }}</p>
-            <p>{{ post.views }}</p>
-
-            <p>Ozet - {{ post.excerpt|truncatewords:20 }}</p>
-            <button><a href="{% url 'post' post.slug %}">Devamini OKU ...</a></button>
-        {% endfor %}
-    {% else %}
-        <p>Burada Yazi yok</p>
-    {% endif %}
-
-
-    <p>Yazilar burada gorunecek</p>
 
 {% endblock %}
