@@ -1,1 +1,38 @@
 {% extends 'app/main.html' %}
+
+
+{#Kategoriler bölümü:#}
+{# Tüm kategorileri listele#}
+{# Her kategori bir link olsun (kategori sayfasına yönlensin)#}
+{# Yazılar bölümü:#}
+{# Eğer yazı varsa, her yazı için şunları göster#}
+{# Görsel (varsa Başlık Yazar ad Tarih (|date:"d M Y" filtresi kullan Görüntülenme sayısı#}
+{# Özet (excerpt) - |truncatewords:20 filtresi ile kısalt#}
+{#"Devamını Oku" butonu (yazı detay sayfasına link)#}
+{#Eğer yazı yoksa: "Henüz yazı yok" mesajı göster#}
+
+{% block content %}
+<h1>Hos geldiniz</h1>
+<p>Siteme hos geldiniz</p>
+    {% for category in categories  %}
+        <a href="{% url 'category' category.id %}">{{ category }}</a>
+    {% endfor %}
+
+    {% for post in posts %}
+        {% if post.image %}
+            <img src="" alt="">
+        {% endif %}
+        <p>{{ post.title }}</p>
+        <span>{{ post.author }}</span>
+        <p>{{ post.created_at|date:"d M Y" }}</p>
+        <p>{{ post.views }}</p>
+
+        <p>Ozet - {{ post.excerpt }}</p>
+        <button><a href="{% url 'post' post.slug %}">Devamini OKU ...</a></button>
+    {% endfor %}
+
+
+
+<p>Yazilar burada gorunecek</p>
+
+{% endblock %}
