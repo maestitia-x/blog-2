@@ -27,7 +27,7 @@ def post(request, slug):
     post_obj.views += 1
     comments = post_obj.comments.filter(active=True)
     context={
-        'posts':post_obj,
+        'post':post_obj,
         'comments':comments,
     }
     return render(request, 'app/post.html', context)

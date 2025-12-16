@@ -1,2 +1,25 @@
 {% extends  'app/main.html' %}
 
+<h1>{{ post.title }}</h1>
+<small>{{ post.author }} - {{ post.created_at|date:'d M Y' }}</small>
+
+<a href="{% url 'category' post.category.id %}">{{ post.category }}</a>
+<small>Goruntulenme sayisi: {{ post.views }}</small>
+
+{% if post.image %}
+    <img src="{{ post.image.url }}" alt="{{ post.image.name }}">
+{% endif %}
+<p>{{ post.content }}</p>
+{# Yorumlar #}
+
+<small>bu posta {{ comments.count }} tane yorum gelmistir</small>
+{% if comments %}
+	{% for comment in comments  %}
+    <p>Yazar: {{ comment.author }}</p>
+    <p>Tarih: {{ comment.created_at }}</p>
+    <p>Icerik: {{ comment.content }}</p>
+
+    {% endfor %}
+{% else %}
+    <p>Henuz Yorum Yok</p>
+{% endif %}
